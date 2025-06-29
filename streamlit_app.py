@@ -1367,7 +1367,7 @@ else:
 
 # Surface Interval Input
 st.header("Surface Interval")
-surface_interval = st.text_input("Surface Interval (HH:MM)", value="1:00")
+surface_interval = st.text_input("Surface Interval (HH:MM)", value="0:00")
 interval_minutes = convert_surface_interval_to_minutes(surface_interval)
 
 if interval_minutes is not None and pg1:
@@ -1383,9 +1383,9 @@ else:
 st.header("Dive 2")
 col3, col4 = st.columns(2)
 with col3:
-    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=40.0, step=1.0, value=10.0)
+    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5, max_value=42, step=1, value=10)
 with col4:
-    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=1.0)
+    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1, max_value=200, step=1, value=1)
 
 # RNT + Total Bottom Time + Final PG
 if pg2:
