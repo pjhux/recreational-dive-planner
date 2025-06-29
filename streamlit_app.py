@@ -240,7 +240,7 @@ pressure_table = {10.0: {'A': 10,
         'B': 5.0,
         'C': 7.0,
         'D': 8.0,
-        'E': None,
+        'E': 8.0,
         'F': 9.0,
         'G': 10.0,
         'H': 11.0,
@@ -262,10 +262,10 @@ pressure_table = {10.0: {'A': 10,
         'X': None,
         'Y': None,
         'Z': None},
- 40.0: {'A': None,
+ 40.0: {'A': 0.0,
         'B': 5.0,
         'C': 6.0,
-        'D': None,
+        'D': 6.0,
         'E': 7.0,
         'F': 8.0,
         'G': 9.0,
@@ -288,9 +288,9 @@ pressure_table = {10.0: {'A': 10,
         'X': None,
         'Y': None,
         'Z': None},
- 42.0: {'A': None,
+ 42.0: {'A': 0.0,
         'B': 4.0,
-        'C': None,
+        'C': 4.0,
         'D': 6.0,
         'E': 7.0,
         'F': 8.0,
@@ -1348,16 +1348,16 @@ def get_residual_nitrogen_time(pressure_group, planned_depth):
     return rnt, f"Residual Nitrogen Time (RNT) for depth {depth_to_use}m and PG {pressure_group}: {rnt} min"
 
 # === Streamlit UI ===
-st.title("🌊 Recreational Dive Planner")
+st.title("🤿 Recreational Dive Planner")
 st.write("Plan two consecutive dives with automatic pressure group, surface interval, and residual nitrogen handling.")
 
 # First Dive Inputs
 st.header("Dive 1")
 col1, col2 = st.columns(2)
 with col1:
-    depth1 = st.number_input("Dive 1 Depth (m)", min_value=5.0, max_value=40.0, step=0.5, value=18.0)
+    depth1 = st.number_input("Dive 1 Depth (m)", min_value=5.0, max_value=42.0, step=1.0, value=10.0)
 with col2:
-    time1 = st.number_input("Dive 1 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=34.0)
+    time1 = st.number_input("Dive 1 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=1.0)
 
 pg1, result1 = calculate_pressure_group(depth1, time1)
 if pg1:
@@ -1383,9 +1383,9 @@ else:
 st.header("Dive 2")
 col3, col4 = st.columns(2)
 with col3:
-    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=40.0, step=0.5, value=15.0)
+    depth2 = st.number_input("Dive 2 Depth (m)", min_value=5.0, max_value=40.0, step=1.0, value=10.0)
 with col4:
-    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=35.0)
+    time2 = st.number_input("Dive 2 Bottom Time (min)", min_value=1.0, max_value=200.0, step=1.0, value=1.0)
 
 # RNT + Total Bottom Time + Final PG
 if pg2:
